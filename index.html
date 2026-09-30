@@ -77,14 +77,14 @@ button{font:inherit;color:inherit}
 .slot{flex:1;min-height:0;container-type:size;display:grid;place-items:center}
 .boardwrap{position:relative;width:min(100cqw,100cqh);aspect-ratio:1}
 .board{
-  --n:6;position:relative;display:grid;grid-template-columns:repeat(var(--n),1fr);gap:1px;
+  --n:6;position:relative;display:grid;grid-template-columns:repeat(var(--n),minmax(0,1fr));grid-template-rows:repeat(var(--n),minmax(0,1fr));gap:1px;
   width:100%;height:100%;padding:3px;border-radius:14px;background:var(--hedge);
   box-shadow:0 0 0 1px var(--line),0 24px 60px -20px rgba(0,0,0,.8),0 0 80px -30px color-mix(in oklab,var(--glow) 25%,transparent);
   touch-action:none;
 }
 .cell{
   --et:0px;--er:0px;--eb:0px;--el:0px;
-  position:relative;border:0;padding:0;margin:0;min-width:0;min-height:0;display:grid;place-items:center;cursor:pointer;
+  position:relative;border:0;padding:0;margin:0;min-width:0;min-height:0;width:100%;height:100%;overflow:visible;display:block;cursor:pointer;
   background:radial-gradient(circle at 32% 26%,color-mix(in oklab,var(--c) 76%,white 24%) 0%,var(--c) 58%,color-mix(in oklab,var(--c) 78%,black 22%) 100%);
   box-shadow:inset 0 var(--et) 0 0 var(--hedge),inset calc(var(--er) * -1) 0 0 0 var(--hedge),inset 0 calc(var(--eb) * -1) 0 0 var(--hedge),inset var(--el) 0 0 0 var(--hedge);
 }
@@ -97,7 +97,7 @@ button{font:inherit;color:inherit}
 @media (hover:hover){.cell:hover::before{opacity:.3}}
 .cell:focus-visible{outline:2px solid var(--glow);outline-offset:-4px;z-index:5}
 .cell[data-s="2"]{z-index:2}
-.mk{position:absolute;width:30%;height:30%;animation:mkIn .16s ease-out both}
+.mk{position:absolute;left:35%;top:35%;width:30%;height:30%;animation:mkIn .16s ease-out both}
 .mk::before,.mk::after{content:"";position:absolute;left:50%;top:50%;width:100%;height:2.5px;border-radius:2px;background:color-mix(in oklab,var(--hedge) 62%,transparent);transform:translate(-50%,-50%) rotate(45deg)}
 .mk::after{transform:translate(-50%,-50%) rotate(-45deg)}
 @keyframes mkIn{from{transform:scale(.3);opacity:0}}
