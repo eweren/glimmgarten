@@ -122,7 +122,7 @@ button{font:inherit;color:inherit}
 .board.won .ff::before{animation-duration:1.5s}
 @keyframes bloom{0%{filter:brightness(1)}35%{filter:brightness(1.55) saturate(1.25)}100%{filter:brightness(1.12) saturate(1.08)}}
 
-#fx{position:absolute;left:-40px;top:-40px;width:calc(100% + 80px);height:calc(100% + 80px);pointer-events:none;z-index:6}
+#fx{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:2}
 
 .toast{
   position:absolute;left:50%;top:10px;z-index:8;transform:translate(-50%,-6px);opacity:0;pointer-events:none;
@@ -162,6 +162,7 @@ button{font:inherit;color:inherit}
 </head>
 <body>
 <canvas id="sky" aria-hidden="true"></canvas>
+<canvas id="fx" aria-hidden="true"></canvas>
 <main>
   <header class="top">
     <h1>Glimm<span>garten</span></h1>
@@ -184,7 +185,6 @@ button{font:inherit;color:inherit}
   <div class="slot">
     <div class="boardwrap" id="boardwrap">
       <div class="board" id="board" role="grid" aria-label="Spielfeld"></div>
-      <canvas id="fx" aria-hidden="true"></canvas>
       <div class="toast" id="status" aria-live="polite"></div>
       <div class="win" id="win" hidden>
         <div class="wincard" role="dialog" aria-labelledby="winTitle">
@@ -640,7 +640,7 @@ function fxLoop(t){
   fxRaf=P.length?requestAnimationFrame(fxLoop):0;
   if(!fxRaf)fctx.clearRect(0,0,FW,FH);
 }
-if("ResizeObserver" in window)new ResizeObserver(sizeFx).observe(boardwrap);else addEventListener("resize",sizeFx);
+addEventListener("resize",sizeFx);
 
 /* ---------- Nachthimmel ---------- */
 const sky=$("sky"),sctx=sky.getContext("2d");let SW=0,SH=0,sdpr=1,skyRaf=0;const motes=[];
