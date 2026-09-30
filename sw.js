@@ -1,4 +1,4 @@
-const VERSION = "glimmgarten-v1";
+const VERSION = "glimmgarten-v2";
 const ASSETS = [
   "./",
   "./index.html",
